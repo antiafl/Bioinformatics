@@ -1,0 +1,26 @@
+1.- PCA -> hecho por Dani con 10 atributos
+2.- Entrenar modelo
+3.- Testear el modelo
+
+
+******************************************************************************************************************************************************
+2o script
+.leer los datos de entrada limpiados por Dani -> pillados con la pca, reducidos a 10 atributos
+.leer el output esperado que es la matriz de targets (salidas esperadas)
+.aleatorizar los datos de entrada (en principio solo si hacemos + de 1 entrenamiento)
+.dividir entrenamiento y test 80:20 (splitting fijo)-> para simplificar las cosas porque tenemos muchas clases (matrices de python)
+.definir modelo -> valores en principio por defectp para ver cuanto tarda y después refinar los valores de esos parámetros
+.para SVM se definen 5 modelos para cada una de las clases (1 vs. All)
+.entrenamos 
+.guardamos modelos entrenados en ficheros
+
+
+******************************************************************************************************************************************************
+3er script -> TEST
+.cargar fichero con modelo 
+.leer los datos de entrada limpiados por Dani -> pillados con la pca, reducidos a 10 atributos
+.leer el output esperado que es la matriz de targets (salidas esperadas)
+...... ahora nos quedaremos con el 20% de los datos
+.una vez ejecutado el modelo con los datos del test guardar en fichero las salidas
+.COMPARAR salidas esperadas y test
+.AROC curve, gráficos comparativos, accuracy, etc -> aquí comparamos salidas del test con las SALIDAS ESPERADAS
