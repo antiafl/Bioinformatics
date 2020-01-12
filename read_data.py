@@ -53,6 +53,7 @@ def executePCA(input_matrix, args):
     n_components = args.pca_n
     pca = PCA(n_components)
     principal_components = pca.fit_transform(input_matrix)
+    print(pca.explained_variance_ratio_)
     principal_components = StandardScaler().fit_transform(principal_components)
 
     return principal_components

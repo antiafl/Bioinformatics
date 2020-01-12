@@ -1,5 +1,5 @@
 import argparse
-from sklearn import svm
+from sklearn.ensemble import RandomForestClassifier as rfc
 import csv
 import numpy as np
 import matplotlib.pyplot as plt
@@ -120,7 +120,7 @@ def main(args):
     input_data = get_data(args.inputs_file).astype(float)
     target_data = get_data(args.targets_file).astype(int)
 
-    classifier = svm.SVC()
+    classifier = rfc(max_depth=4, random_state=0)
     target_data = process_targets(target_data)
     noftrains = args.noftrains
     classes = 5
@@ -131,7 +131,7 @@ def main(args):
     auc_roc_list = []
     auc_pr_list = []
     best_precision = -1
-    model_filename = '%s/%s_svm.pth'%(args.models_path, \
+    model_filename = '%s/%s_rfor.pth'%(args.models_path, \
                                 args.inputs_file.replace('.csv', ''))
     for it in range(0, noftrains):
         # Separación aleatoria de los conjuntos de entrenamiento y test.
@@ -139,7 +139,7 @@ def main(args):
             train_test_split(input_data, target_data, test_size=chosen_test_size)
         classifier.fit(train_input, train_output)
         prediction = classifier.predict(test_input)
-        decision = classifier.decision_function(test_input)
+        decision = classifier.predict_proba(test_input)
         conf_matrix = confusion_matrix(test_output, prediction)
         precision = calculate_precision(conf_matrix, classes)*100
         precision_list.append(precision)
@@ -178,7 +178,7 @@ def main(args):
                                             np.std(auc_pr_list[class_selected]))
         auc_pr_string_list.append(auc_pr_string)
 
-    results_path = '%s/results_svm_%s'%(args.results_path, args.inputs_file)
+    results_path = '%s/results_rfor_%s'%(args.results_path, args.inputs_file)
     store_metrics(precision_string, sensivity_string_list, auc_roc_string_list, \
                     auc_pr_string_list, results_path)
     print('Results were stored at %s'%results_path)

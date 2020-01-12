@@ -1,0 +1,44 @@
+1.- PCA -> Hecho por Dani con 10 atributos (se prueba con algunas configuraciones adicionales).
+2.- Entrenar modelo.
+3.- Testear el modelo.
+
+******************************************************************************************************************************************************
+	-> Segundo script
+
+Algoritmo a implementar.
+
+- Leer los datos de entrada limpios -> Obtenidos aplicando PCA, reducidos a N atributos (1, 2, 3, 5, 10) y normalizados.
+- Leer el output esperado que es la matriz de targets (salidas esperadas).
+- Aleatorizar los datos de entrada (en principio solo si hacemos + de 1 entrenamiento). 
+- Dividir entrenamiento y test 80:20 (splitting fijo)-> Para simplificar las cosas porque tenemos muchas clases (matrices de python). Finalmente, la repartición será del 60/40.
+- Definir modelo -> Valores en principio por defectp para ver cuanto tarda y después refinar los valores de esos parámetros.
+- Para SVM se definen 5 modelos para cada una de las clases (one vs. all).
+- Entrenamos. 
+- Guardamos modelos entrenados en ficheros.
+
+Hecho por Dani, queda
+	- Queda añadir línea para el split con aleatoridad -> Finalmente, el valor de "random_state" no tiene la 
+funcionalidad que yo consideraba, así que se dejará una semilla automática.
+	- Entrenar modelo N veces -> Se pone unas 100 veces (esto se hace en la SVM por la repartición aleatoria entre los conjuntos).
+	- Recoger métricas en listas -> Una vez entrenado el modelo, se cogen diversas métricas almacenadas en listas. Después, para cada una de las listas, se obtiene la media y la desviación típica para todos los valores de las mismas.
+	- Decidir que métricas nos interesan (precisión, sensibilidad, falsos positivos, falsos negativos ...). En este caso, se decide utilizar precisión global, sensibilidad para cada clase, AUC-ROC y AUC-PR.
+	- Guardar el modelo que de los mejores datos para hacer después la curva ROC -> Finalmente, esto no se va a llevar a cabo.
+	- Entrenar, testear, sacar métricas, guardar modelo, comparar métricas con modelo anterior si lo hay y guardar/sobreescribir el mejor modelo si se encuentra uno más efectivo.
+
+
+******************************************************************************************************************************************************
+ -> Tercer script 
+
+Usar el modelo para sacar curva roc -> Finalmente esto no se va a hacer. Los datos de AUC-ROC y AUC-PR se van a proporcionar simplemente con información numérica.
+
+Sacar tablas estéticas -> Una vez que se obtengan los valores de las métricas para cada uno de los modelos, se podrán obtener tablas que permitan contrastar los resultados.
+
+
+******************************************************************************************************************************************************
+
+https://scikit-learn.org/stable/modules/multiclass.html#multilabel-classification-format
+
+******************************************************************************************************************************************************
+
+Descripción conjunto de datos
+Descripción de los pasos realizados (poner código)
